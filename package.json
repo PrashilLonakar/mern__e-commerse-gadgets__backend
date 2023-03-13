@@ -27,7 +27,9 @@
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^6.9.2"
+    "mongoose": "^6.9.2",
+    "morgan": "^1.10.0",
+    "slugify": "^1.6.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
