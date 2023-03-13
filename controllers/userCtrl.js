@@ -72,8 +72,7 @@ const logout = asyncHandler(async (req, res) => {
     httpOnly: true,
     secure: true,
   });
-  res.status(204); // forbidden
-  retur;
+  return res.status(204); //forbidden
 });
 
 // Handle refresh Token
