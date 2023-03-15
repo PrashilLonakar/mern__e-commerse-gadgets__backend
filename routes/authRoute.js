@@ -11,6 +11,7 @@ const {
   unblockUser,
   handleRefreshToken,
   logout,
+  updatePassword,
 } = require("../controllers/userCtrl");
 
 const router = express.Router();
@@ -24,6 +25,7 @@ router.delete("/:id", deleteaUser);
 router.put("/edit", authMiddleware, updateUser);
 router.put("/block/:id", authMiddleware, isAdmin, blockUser);
 router.put("/unblock/:id", authMiddleware, isAdmin, unblockUser);
+router.put("/password", authMiddleware, updatePassword);
 router.get("/refresh", handleRefreshToken);
 
 module.exports = router;
