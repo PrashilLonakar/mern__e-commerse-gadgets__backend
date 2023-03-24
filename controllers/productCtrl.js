@@ -120,36 +120,6 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 });
 
-const addToWishList = asyncHandler(async (req, res) => {
-  const { id } = req.user;
-  const { prodId } = req.body;
-  try {
-    const user = await User.findById(id);
-    const alreadyAdded = user.wishlist.find((id) => id.toString() === prodId);
-    if (alreadyAdded) {
-      let user = await User.findByIdAndUpdate(
-        id,
-        {
-          $pull: { wishlist: prodId },
-        },
-        { new: true }
-      );
-      res.json(user);
-    } else {
-      let user = await User.findByIdAndUpdate(
-        id,
-        {
-          $push: { wishlist: prodId },
-        },
-        { new: true }
-      );
-      res.json(user);
-    }
-  } catch (error) {
-    throw new Error(error);
-  }
-});
-
 const rating = asyncHandler(async (req, res) => {
   const { id } = req.user;
   const { star, prodId, comment } = req.body;
@@ -241,7 +211,6 @@ module.exports = {
   getAllProduct,
   updateProduct,
   deleteProduct,
-  addToWishList,
   rating,
   uploadImages,
 };
