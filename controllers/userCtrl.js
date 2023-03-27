@@ -517,6 +517,28 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
   }
 });
 
+// Delete a single User
+const cancelOrder = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const status = "Cancelled";
+  validateMongoDbId(id);
+  try {
+    const cancelingOrder = await Order.findByIdAndUpdate(
+      id,
+      {
+        orderStatus: status,
+        paymentIntent: {
+          status: status,
+        },
+      },
+      { new: true }
+    );
+    res.json(cancelingOrder);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 module.exports = {
   createUser,
   loginUser,
@@ -542,4 +564,5 @@ module.exports = {
   addOrder,
   getOrders,
   updateOrderStatus,
+  cancelOrder,
 };

@@ -25,6 +25,7 @@ const {
   addOrder,
   getOrders,
   updateOrderStatus,
+  cancelOrder,
 } = require("../controllers/userCtrl");
 
 const router = express.Router();
@@ -47,6 +48,7 @@ router.put("/reset-password/:token", resetPassword);
 router.get("/order/all", authMiddleware, getOrders);
 router.post("/order/add", authMiddleware, addOrder);
 router.put("/order/update/:id", authMiddleware, isAdmin, updateOrderStatus);
+router.delete("/order/cancel/:id", authMiddleware, cancelOrder);
 
 router.get("/wishlist/all", authMiddleware, getWishlist);
 router.put("/wishlist/add", authMiddleware, addToWishList);
