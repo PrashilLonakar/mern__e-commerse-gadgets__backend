@@ -26,7 +26,7 @@ router.put(
   uploadImages
 );
 router.get("/detail/:id", getaProduct);
-router.get("/", getAllProduct);
+router.get("/all", getAllProduct);
 router.delete("/delete/:id", authMiddleware, isAdmin, deleteProduct);
 router.put("/rating", authMiddleware, rating);
 
